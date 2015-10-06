@@ -1,0 +1,3 @@
+Project 4
+
+My taskes for project 4 are to design a class inwhich has the job to take a given vector and sort the given dates listed in the vector. Along with dealing with sorting algorithms, my designed class has to inherit a simple sort class which also inherits  the simple vector class. I have been given the class files named "SimpleVector", "DataType", and "SorterClass", which have been writen by my professor Micheal Leverington. My part of the project to design and implement the TestSorter class which will hold the tools in order to correctly sort the vector. Professor Leverington also gave us a main driver, named "PA04.cpp" which was used to test our TestSorter class.
