@@ -43,7 +43,6 @@ class BSTNode
        BSTNode<DataType> *right;
    };
 
-template <typename DataType>
 class BSTClass
    {
     public:
