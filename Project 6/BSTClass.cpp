@@ -196,6 +196,39 @@ template <class NameType>
 void BSTClass<NameType>::insert(const NameType &newData)
 {
     // Variables
+    BSTNode * leader = rootNode;
+    BSTNode * follower = NULL;
+    
+    // Loop till the end of the tree is reached
+    while( leader != NULL)
+    {
+        // Set follower
+        follower = leader;
+       
+        // Test the two data names
+        if(leader->dataItem.compareTo(newData) > 0)
+        {
+            leader = leader->left; 
+        }else{
+            leader = leader->right;
+        }
+    }
+    
+    // Test to see if its the first node
+    if(follower == NULL)
+    {
+        // Create the first Node
+        rootNode = new BSTNode(newData, NULL, NULL);
+    }else{
+        // Test to see what side of the tree to put it on
+        if(follower->dataItem.compareTo(newData) > 0)
+        {
+            // Insert new Node
+            follower->left = new BSTNode(newData, NULL, NULL);
+        }else{
+            follower->right = new BSTNode(newData, NULL, NULL);
+        }
+    }
 
 
 }
