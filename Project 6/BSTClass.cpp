@@ -196,8 +196,8 @@ template <class NameType>
 void BSTClass<NameType>::insert(const NameType &newData)
 {
     // Variables
-    BSTNode * leader = rootNode;
-    BSTNode * follower = NULL;
+    BSTNode<NameType> * leader = rootNode;
+    BSTNode<NameType> * follower = NULL;
     
     // Loop till the end of the tree is reached
     while( leader != NULL)
@@ -218,38 +218,137 @@ void BSTClass<NameType>::insert(const NameType &newData)
     if(follower == NULL)
     {
         // Create the first Node
-        rootNode = new BSTNode(newData, NULL, NULL);
+        rootNode = new BSTNode<NameType>(newData, NULL, NULL);
     }else{
         // Test to see what side of the tree to put it on
         if(follower->dataItem.compareTo(newData) > 0)
         {
             // Insert new Node
-            follower->left = new BSTNode(newData, NULL, NULL);
+            follower->left = new BSTNode<NameType>(newData, NULL, NULL);
         }else{
-            follower->right = new BSTNode(newData, NULL, NULL);
+            follower->right = new BSTNode<NameType>(newData, NULL, NULL);
         }
     }
 
 
 }
 
+/**
+ * @brief findItem
+ *
+ * @details finds a given NameType
+ *
+ * @param NameType
+ *
+ * @note none
+ */
+ 
 template <class NameType>
 bool BSTClass<NameType>::findItem(const NameType &searchDataItem) const
 {
+    // Variables
+    BSTNode<NameType> * temp = root; 
+    bool foundItem = false;
+    
+    // Loop through tree
+    while( foundItem == false && temp != NULL)
+    {
+        // Test the roots item
+        if(temp->dataItem.compareTo(searchDataItem) > 0)
+        {
+            temp = temp->left;
+        }else if(temp->dataItem.compareTo(searchDataItem) < 0)
+        {
+            temp = temp->right;
+        }else{
+            foundItem = true;
+        }
+    }
     // Return false
-    return false;
+    return foundItem;
 }
 
+/**
+ * @brief removeItem
+ *
+ * @details finds a given item and removes it
+ *
+ * @param NameType
+ *
+ * @note none
+ */
+ 
 template <class NameType>
 bool BSTClass<NameType>::removeItem(const NameType &dataItem)
 {
+    // Variables
+    BSTNode * leader = root;
+    BSTNode * follower = NULL;
+    BSTNode * delParent = NULL;
+    BSTNode * delNode = NULL;
+    bool foundItem = false;
+    
+    // Test to see if the node is empty
+    if(isEmpty() || !findItem(dataItem))
+    {
+        // Return false
+        return false;
+    }
+    
+    // Find the Node
+   while( !foundItem && leader != NULL)
+   {
+      // Set follower
+      follower = leader;
+      
+      // Test the roots item
+      if(leader->dataItem.compareTo(searchDataItem) > 0)
+      {
+         leader = leader->left;
+      }else if(leader->dataItem.compareTo(searchDataItem) < 0)
+      {
+         leader = leader->right;
+      }else{
+         foundItem = true;
+      }
+    }
+    
+    // Test if its the root
+    if(leader == root)
+    {
+        // Set delNode node
+        delNode = leader;
+    }else{
+        // Set delNode and Parent node
+        delNode = leader;
+        delParent = follower;
+    }
+    
     // Return true
     return true;
 }
 
+/**
+ * @brief isEmpty
+ *
+ * @details tests to see if tree is empty
+ *
+ * @param none
+ *
+ * @note none
+ */
+ 
 template <class NameType>
 bool BSTClass<NameType>::isEmpty() const
 {
+    // Variables
+    
+    // Test root
+    if(rootNode == NULL)
+    {
+        // Return true
+        return reture;
+    }
     // Return false
     return false;
 }
