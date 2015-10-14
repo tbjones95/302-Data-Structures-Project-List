@@ -80,6 +80,9 @@ class BSTClass
         // Member Functions
         BSTNode<NameType> * branchLoop(const BSTNode<NameType> * treePnt);
         void deleteTree(BSTNode<NameType> * treePnt);
+        void preorderPrint(BSTNode<NameType> * branch) const;
+        void inorderPrint(BSTNode<NameType> * branch) const;
+        void postorderPrint(BSTNode<NameType> * branch) const;
 };
 
 #endif //PROJECT_6_BSTCLASS_H

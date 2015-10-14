@@ -105,6 +105,7 @@ BSTClass<NameType>::~BSTClass()
     {
         // Clear Tree
         clearTree();
+        rootNode = NULL;
     }
 }
 
@@ -176,10 +177,8 @@ void BSTClass<NameType>::clearTree()
     // Variables
 
     // Test to see if root is empty
-    if(rootNode != NULL)
-    {
-        deleteTree(rootNode);
-    }
+    deleteTree(rootNode);
+    rootNode = NULL;
 }
 
 /**
@@ -247,7 +246,7 @@ template <class NameType>
 bool BSTClass<NameType>::findItem(const NameType &searchDataItem) const
 {
     // Variables
-    BSTNode<NameType> * temp = root; 
+    BSTNode<NameType> * temp = rootNode;
     bool foundItem = false;
     
     // Loop through tree
@@ -282,10 +281,10 @@ template <class NameType>
 bool BSTClass<NameType>::removeItem(const NameType &dataItem)
 {
     // Variables
-    BSTNode * leader = root;
-    BSTNode * follower = NULL;
-    BSTNode * delParent = NULL;
-    BSTNode * delNode = NULL;
+   /* BSTNode<NameType> * leader = rootNode;
+    BSTNode<NameType> * follower = NULL;
+    BSTNode<NameType> * delParent = NULL;
+    BSTNode<NameType> * delNode = NULL;
     bool foundItem = false;
     
     // Test to see if the node is empty
@@ -324,7 +323,7 @@ bool BSTClass<NameType>::removeItem(const NameType &dataItem)
         delParent = follower;
     }
     
-    // Return true
+    // Return true*/
     return true;
 }
 
@@ -347,27 +346,84 @@ bool BSTClass<NameType>::isEmpty() const
     if(rootNode == NULL)
     {
         // Return true
-        return reture;
+        return true;
     }
     // Return false
     return false;
 }
 
+/**
+ * @brief preOderTraversal
+ *
+ * @details loops through the tree and prints out in preOrder traversal
+ *
+ * @param none
+ *
+ * @note none
+ */
+
 template <class NameType>
 void BSTClass<NameType>::preOrderTraversal() const
 {
+    // Variables
+    BSTNode<NameType> * temp = rootNode;
+
+    // Test to see if tree is empty
+    if(!isEmpty())
+    {
+        // Call print function
+        preorderPrint(temp);
+    }
 
 }
+
+/**
+ * @brief inOrderTraversal
+ *
+ * @details loops through the tree and prints out in in order traversal
+ *
+ * @param none
+ *
+ * @note none
+ */
 
 template <class NameType>
 void BSTClass<NameType>::inOrderTraversal() const
 {
+    // Variables
+    BSTNode<NameType> * temp = rootNode;
+
+    // Test to see if three is empty
+    if(!isEmpty())
+    {
+        // call print function
+        inorderPrint(temp);
+    }
 
 }
+
+/**
+ * @brief postOrderTraversal
+ *
+ * @details loops through the tree and prints out in post order traversal
+ *
+ * @param none
+ *
+ * @note none
+ */
 
 template <class NameType>
 void BSTClass<NameType>::postOrderTraversal() const
 {
+    // Variables
+    BSTNode<NameType> * temp = rootNode;
+
+    // Test to see if three is empty
+    if(!isEmpty())
+    {
+        // call print function
+        postorderPrint(temp);
+    }
 
 }
 
@@ -431,19 +487,92 @@ void BSTClass<NameType>::deleteTree(BSTNode<NameType> *treePnt)
     // Variables
 
     // Test left Node
-    if(treePnt->left != NULL)
-    {
-        deleteTree(treePnt->left);
-    }
+    if(treePnt != NULL) {
 
-    // Test right node
-    if(treePnt->right != NULL)
-    {
-        deleteTree(treePnt->right);
-    }
+        if (treePnt->left != NULL) {
+            deleteTree(treePnt->left);
+        }
 
-    // Delete Node
-    delete treePnt;
+        // Test right node
+        if (treePnt->right != NULL) {
+            deleteTree(treePnt->right);
+        }
+
+        // Delete Node
+        delete treePnt;
+    }
+}
+
+/**
+ * @brief preoderPrint
+ *
+ * @details prints out all the nodes through preorder
+ *
+ * @param BSTNode node
+ *
+ * @note none
+ */
+
+template <class NameType>
+void BSTClass<NameType>::preorderPrint(BSTNode<NameType> *branch) const
+{
+    // Variables
+
+    // Test to see if branch is pointing to null
+    if(branch != NULL)
+    {
+        cout << branch->dataItem << endl;
+        preorderPrint(branch->left);
+        preorderPrint(branch->right);
+    }
+}
+
+/**
+ * @brief inorderPrint
+ *
+ * @details loops through tree and prints out in inorder Print
+ *
+ * @param BSTNode node
+ *
+ * @note none
+ */
+
+template <class NameType>
+void BSTClass<NameType>::inorderPrint(BSTNode<NameType> *branch) const
+{
+    // Variables
+
+    // Test to see if branch is pointing to null
+    if(branch != NULL)
+    {
+        inorderPrint(branch->left);
+        cout << branch->dataItem << endl;
+        inorderPrint(branch->right);
+    }
+}
+
+/**
+ * @brief postorderPrint
+ *
+ * @details loops through tree and prints out in postorder Print
+ *
+ * @param BSTNode node
+ *
+ * @note none
+ */
+
+template <class NameType>
+void BSTClass<NameType>::postorderPrint(BSTNode<NameType> *branch) const
+{
+    // Variables
+
+    // Test to see if branch is point to null
+    if(branch != NULL)
+    {
+        postorderPrint(branch->left);
+        postorderPrint(branch->right);
+        cout << branch->dataItem << endl;
+    }
 }
 
 #endif //PROJECT_6_BSTCLASS_CPP
