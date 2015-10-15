@@ -9,5 +9,5 @@ Topics in which were covered include:
           4) Inheritance
           5) Priority Queue
           6) Insertion, Merge, Quick Sort
-          7) Binary Search Tree
+          7) Binary Search Trees
           
