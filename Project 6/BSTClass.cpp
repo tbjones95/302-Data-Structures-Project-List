@@ -129,6 +129,7 @@ const BSTClass<NameType> &BSTClass<NameType>::operator=(const BSTClass &rhData)
     {
         // Clear tree
         clearTree();
+        rootNode = NULL;
     }
 
     // Copy Tree
@@ -268,66 +269,6 @@ bool BSTClass<NameType>::findItem(const NameType &searchDataItem) const
 }
 
 /**
- * @brief removeItem
- *
- * @details finds a given item and removes it
- *
- * @param NameType
- *
- * @note none
- */
- 
-template <class NameType>
-bool BSTClass<NameType>::removeItem(const NameType &dataItem)
-{
-    // Variables
-   /* BSTNode<NameType> * leader = rootNode;
-    BSTNode<NameType> * follower = NULL;
-    BSTNode<NameType> * delParent = NULL;
-    BSTNode<NameType> * delNode = NULL;
-    bool foundItem = false;
-    
-    // Test to see if the node is empty
-    if(isEmpty() || !findItem(dataItem))
-    {
-        // Return false
-        return false;
-    }
-    
-    // Find the Node
-   while( !foundItem && leader != NULL)
-   {
-      // Set follower
-      follower = leader;
-      
-      // Test the roots item
-      if(leader->dataItem.compareTo(searchDataItem) > 0)
-      {
-         leader = leader->left;
-      }else if(leader->dataItem.compareTo(searchDataItem) < 0)
-      {
-         leader = leader->right;
-      }else{
-         foundItem = true;
-      }
-    }
-    
-    // Test if its the root
-    if(leader == root)
-    {
-        // Set delNode node
-        delNode = leader;
-    }else{
-        // Set delNode and Parent node
-        delNode = leader;
-        delParent = follower;
-    }
-    
-    // Return true*/
-    return true;
-}
-
-/**
  * @brief isEmpty
  *
  * @details tests to see if tree is empty
@@ -373,8 +314,10 @@ void BSTClass<NameType>::preOrderTraversal() const
     {
         // Call print function
         preorderPrint(temp);
-    }
+    }else{
 
+        cout << "Tree is empty" << endl;
+    }
 }
 
 /**
@@ -398,8 +341,10 @@ void BSTClass<NameType>::inOrderTraversal() const
     {
         // call print function
         inorderPrint(temp);
-    }
+    }else{
 
+        cout << "Tree is empty" << endl;
+    }
 }
 
 /**
@@ -423,6 +368,9 @@ void BSTClass<NameType>::postOrderTraversal() const
     {
         // call print function
         postorderPrint(temp);
+    }else{
+
+        cout << "Tree is empty" << endl;
     }
 
 }
@@ -430,14 +378,33 @@ void BSTClass<NameType>::postOrderTraversal() const
 template <class NameType>
 int BSTClass<NameType>::getHeight() const
 {
-    // Return 0
-    return 0;
+    // Variables
+    int height;
+
+    // Get Height
+    height = getHeightHelper(rootNode);
+
+    // Return Height
+    return height;
 }
 
 template <class NameType>
 void BSTClass<NameType>::showStructure() const
 {
+    // Variables
+    int height;
 
+    // Test to if tree is empty
+    if(rootNode == NULL)
+    {
+        cout << "Tree is empty" << endl;
+    }else{
+
+        // Get Height
+        height = getHeight();
+        cout << endl;
+        printStructure(rootNode, height);
+    }
 }
 
 /**
@@ -575,4 +542,72 @@ void BSTClass<NameType>::postorderPrint(BSTNode<NameType> *branch) const
     }
 }
 
+/**
+ * @brief getHeightHelper
+ *
+ * @details loops through tree and finds height
+ *
+ * @param BSTNode node
+ *
+ * @note none
+ */
+
+template <class NameType>
+int BSTClass<NameType>::getHeightHelper(BSTNode<NameType> *branch) const
+{
+    // Variables
+    int left;
+    int right;
+
+    // Test to see if branch is null
+    if(branch == NULL)
+    {
+        // Return 0
+        return 0;
+    }
+
+    // Get left and right height
+    left = getHeightHelper(branch->left);
+    right = getHeightHelper(branch->right);
+
+    // Test the heights
+    if(left > right)
+    {
+        return left + 1;
+
+    }else{
+
+        return right + 1;
+    }
+}
+
+/**
+ * @brief printStructure
+ *
+ * @details loops through tree and prints out in structure form
+ *
+ * @param BSTNode node and int level
+ *
+ * @note none
+ */
+
+template <class NameType>
+void BSTClass<NameType>::printStructure(BSTNode<NameType> *branch, int level) const
+{
+    // Variables
+    int count;
+
+    // Test to see if branch is pointing to null
+    if(branch != NULL)
+    {
+        printStructure(branch->left,level-1);
+        for(count = 0; count < level; count++)
+        {
+            // print tap
+            cout << TAB;
+        }
+        cout << branch->dataItem << endl << endl;
+        printStructure(branch->right, level-1);
+    }
+}
 #endif //PROJECT_6_BSTCLASS_CPP

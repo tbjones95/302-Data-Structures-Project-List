@@ -63,7 +63,6 @@ class BSTClass
         void clearTree();
         void insert( const NameType &newData );
         bool findItem( const NameType &searchDataItem ) const;
-        bool removeItem( const NameType &dataItem );
 
         // accessors
         bool isEmpty() const;
@@ -83,6 +82,8 @@ class BSTClass
         void preorderPrint(BSTNode<NameType> * branch) const;
         void inorderPrint(BSTNode<NameType> * branch) const;
         void postorderPrint(BSTNode<NameType> * branch) const;
+        int getHeightHelper(BSTNode<NameType> * branch) const;
+        void printStructure(BSTNode<NameType> * branch, int level) const;
 };
 
 #endif //PROJECT_6_BSTCLASS_H
