@@ -43,63 +43,67 @@ public:
 template <class AcctType>
 class BSTClass
 {
-public:
+    public:
 
-    // constants
-    static const char TAB = '\t';
-    static const int MAX_STR_LEN = 80;
-    static const int INITIALIZE = 101;
-    static const int AT_BOTTOM = 102;
-    static const int GET_RESULT = 103;
+        // constants
+        static const char TAB = '\t';
+        static const int MAX_STR_LEN = 80;
+        static const int INITIALIZE = 101;
+        static const int AT_BOTTOM = 102;
+        static const int GET_RESULT = 103;
 
-    // constructor
-    BSTClass();
-    BSTClass( const BSTClass<AcctType> &copied );
+        // constructor
+        BSTClass();
+        BSTClass( const BSTClass<AcctType> &copied );
 
-    // destructor
-    ~BSTClass();
+        // destructor
+        ~BSTClass();
 
-    // assignment operator
-    const BSTClass &operator = (const BSTClass<AcctType> &rhData );
+        // assignment operator
+        const BSTClass &operator = (const BSTClass<AcctType> &rhData );
 
-    // modifiers
-    void copyTree( const BSTClass<AcctType> &copied );
-    void clearTree();
-    void insert( const AcctType &newData );
-    bool findItem( const AcctType &searchDataItem ) const;
-    bool removeItem( const AcctType &dataItem );
+        // modifiers
+        void copyTree( const BSTClass<AcctType> &copied );
+        void clearTree();
+        void insert( const AcctType &newData );
+        bool findItem(AcctType &searchDataItem) const;
+        bool removeItem(const AcctType &dataItem);
 
-    // accessors
-    bool isEmpty() const;
-    void preOrderTraversal() const;
-    void inOrderTraversal() const;
-    void postOrderTraversal() const;
-    int getHeight() const;
-    int getWidthAtRow( int row ) const;                       // assigned
-    void getMaxWidth( int &maxWidth, int &maxWidthRow ) const;  // assigned
-    void getMinWidth( int &minWidth, int &minWidthRow ) const;  // assigned
-    int getBottomWidth() const;                               // assigned
-    bool isCompleteTree() const;
-    bool isFullTree() const;
-    void showStructure() const;
+        // accessors
+        bool isEmpty() const;
+        void preOrderTraversal() const;
+        void inOrderTraversal() const;
+        void postOrderTraversal() const;
+        int getHeight() const;
+        int getWidthAtRow( int row ) const;
+        void getMaxWidth( int &maxWidth, int &maxWidthRow ) const;
+        void getMinWidth( int &minWidth, int &minWidthRow ) const;
+        int getBottomWidth() const;
+        bool isCompleteTree() const;
+        bool isFullTree() const;
+        void showStructure() const;
 
-private:
-    // Private Member Function
-    void showStructureHelper( BSTNode<AcctType> *workingPtr, int fullHeight, int presentHeight ) const;
-    int getHeightHelper( BSTNode<AcctType> *workingPtr ) const;
-    void copyTreeHelper( BSTNode<AcctType> *&workingPtr,const BSTNode<AcctType> *sourcePtr );
-    void clearTreeHelper( BSTNode<AcctType> *workingPtr );
-    void insertHelper( BSTNode<AcctType> *&workingPtr, const AcctType &newData );
-    void isCompleteTreeHelper( BSTNode<AcctType> *workingPtr,int testDepth, int currentDepth ) const;
-    void preOrderTraversalHelper( BSTNode<AcctType> *workingPtr) const;
-    void inOrderTraversalHelper( BSTNode<AcctType> *workingPtr) const;
-    void postOrderTraversalHelper( BSTNode<AcctType> *workingPtr) const;
-    void showTabs( int numTabs ) const;
-    bool checkDepth( int cmdCode, int depth ) const;
-    int toPower( int base, int exponent ) const;
+    private:
 
-    // Private Member Data Members
-    BSTNode<AcctType> *rootNode;
+        // Private Member Function
+        BSTNode<AcctType> * copyTreeHelper(const BSTNode<AcctType> * treePnt);
+        void clearTreeHelper( BSTNode<AcctType> * treePnt);
+        void insertHelper( BSTNode<AcctType> *&treePnt, const AcctType &newData );
+        bool removeItemHelper(BSTNode<AcctType> *&treePnt, const AcctType &removeDataItem);
+        void preorderPrint(BSTNode<AcctType> * treePnt) const;
+        void inorderPrint(BSTNode<AcctType> * treePnt) const;
+        void postorderPrint(BSTNode<AcctType> * treePnt) const;
+        int getHeightHelper( BSTNode<AcctType> * treePnt ) const;
+        int getWidthAtRowHelper(BSTNode<AcctType> * treePnt, int height, int &row) const;
+        bool checkDepth( int cmdCode, int depth ) const;
+        void isCompleteTreeHelper( BSTNode<AcctType> *workingPtr,int testDepth, int currentDepth ) const;
+        bool fullTreeHelper(BSTNode<AcctType> * treePnt) const;
+        void printStructure( BSTNode<AcctType> *workingPtr, int fullHeight, int presentHeight ) const;
+        void showTabs( int numTabs ) const;
+        int toPower( int base, int exponent ) const;
+
+        // Private Member Data Members
+        BSTNode<AcctType> *rootNode;
 };
 
 
