@@ -1,0 +1,3 @@
+Project 8
+
+The assignment for project 8 was an introduction to backtracking recursion. The project had me create a program in which would make a rectangle container in which would hold smaller rectangles. The container rectangle was formated to be a two dimensional vector which came from the class Matrix, in which my professor provided, and the smaller rectangles were held in a one dimensional vector which came from the class vector, also a class my professor provided. My part of the assignment was to write a classed called solverClass which would hold the algorithm to find if X number of rectangles would fit into the container. 
