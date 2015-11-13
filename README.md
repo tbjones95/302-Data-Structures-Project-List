@@ -10,4 +10,6 @@ Topics in which were covered include:
           5) Priority Queue
           6) Insertion, Merge, Quick Sort
           7) Binary Search Trees
-          
+          8) Recursion
+          9) Backtracking recursion
+          10) Heaps Data Structures 
