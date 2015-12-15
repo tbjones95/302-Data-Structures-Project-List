@@ -13,3 +13,4 @@ Topics in which were covered include:
           8) Recursion
           9) Backtracking recursion
           10) Heaps Data Structures 
+          11) Hash Tables
